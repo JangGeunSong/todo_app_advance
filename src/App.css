@@ -41,3 +41,11 @@
   background-color: red;
 }
 
+.complete {
+  color: crimson;
+}
+
+.uncomplete {
+  text-decoration-line: line-through;
+  color: aquamarine;
+}
