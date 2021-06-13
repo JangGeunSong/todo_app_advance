@@ -1,41 +1,35 @@
-import React from 'react'
+import { useState } from 'react';
 
-interface todoObject {
-    idx : Number,
-    todo : string,
-    isComplete : boolean
-}
+import TodoObject from '../../../Data/todoObject';
 
-export default function todoList(username:string):JSX.Element {
+export default function TodoList(username:string):JSX.Element {
+    const [listTodo, SetListTodo] = useState<TodoObject[]>([
+        {
+            idx : 1,
+            todo : "todo app 제작 템플릿 만들어보기",
+            isComplete : true
+        },
+        {
+            idx : 2,
+            todo : "todo app 제작 테스트 진행",
+            isComplete : true
+        }
+    ])
     
-    const listPrint = () => {
-        const list:Array<todoObject> = [
-            {
-                idx : 1,
-                todo : "todo app 제작 템플릿 만들어보기",
-                isComplete : false
-            },
-            {
-                idx : 2,
-                todo : "todo app 제작 테스트 진행",
-                isComplete : true
-            }
-        ];
-
-        return list;
-    }
-
-    let todo_list:Array<todoObject> = listPrint();
-
     return (
         <div className="todo-list">
             <h1>{username}'s todo list</h1>
             <ul>
-                {todo_list.map(element => (
+                {listTodo.map((element, index) => (
                     <li 
                         key={element.idx.toString()}
                         className={element.isComplete === true ? "complete" : "uncomplete"}>
-                        {element.todo}
+                        <span>{element.todo}</span>
+                        <input type="checkbox" onClick={() => {
+                            let newTodoArr = [...listTodo]
+                            newTodoArr[index].isComplete = !newTodoArr[index].isComplete;
+                            SetListTodo(newTodoArr)
+                        }}/>
                     </li>
                 ))}
             </ul>
