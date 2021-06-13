@@ -1,16 +1,21 @@
-import React from 'react'
+import { useState } from 'react'
 
 import buttonBundle from './components/buttonBundle';
 import todoList from './components/todoList';
+import todoInputForm from './components/todoInputForm';
 
-function mainPage(greeting:string):JSX.Element {
+function MainPage(greeting:string):JSX.Element {
+    const [isTodoInputOpen, setIsTodoInputOpen] = useState<boolean>(false);
+    const [todo, setTodo] = useState<string>("");
+
     return (
         <div>
             <p>{greeting}</p>
             {todoList("user1")}
-            {buttonBundle()}
+            {isTodoInputOpen === true ? (todoInputForm(todo, setTodo)) : null}
+            {buttonBundle(isTodoInputOpen, setIsTodoInputOpen)}
         </div>
     )
 }
 
-export default mainPage;
+export default MainPage;

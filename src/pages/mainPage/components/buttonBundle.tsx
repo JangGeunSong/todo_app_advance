@@ -1,7 +1,7 @@
-export default function buttonBundle():JSX.Element {
+export default function ButtonBundle(inputOpenStatus:boolean, changeInputStatus:React.Dispatch<React.SetStateAction<boolean>>):JSX.Element {
 
-    const startClick = () => {
-        console.log("hey this is start")
+    const openTodoInput = () => {
+        changeInputStatus(!inputOpenStatus)
     }
 
     const descriptionClick = () => {
@@ -10,8 +10,20 @@ export default function buttonBundle():JSX.Element {
 
     return (
         <div className="btnBox red">
-            <button onClick={startClick}>시작하기</button>
-            <button onClick={descriptionClick}>설명보기</button>
+            <button onClick={openTodoInput}>
+                {inputOpenStatus === true ? 
+                    (<span>TODO 등록창 닫기</span>)
+                    :
+                    (<span>TODO 등록창 열기</span>)
+                }
+            </button>
+            <button onClick={descriptionClick}>
+                {inputOpenStatus === true ? 
+                    (<span>input 가이드라인 확인</span>)
+                    :
+                    (<span>설명보기</span>)
+                }
+            </button>
         </div>
     )
 }
