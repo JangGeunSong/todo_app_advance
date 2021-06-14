@@ -1,20 +1,7 @@
-import { useState } from 'react';
-
 import TodoObject from '../../../Data/todoObject';
 
-export default function TodoList(username:string):JSX.Element {
-    const [listTodo, SetListTodo] = useState<TodoObject[]>([
-        {
-            idx : 1,
-            todo : "todo app 제작 템플릿 만들어보기",
-            isComplete : true
-        },
-        {
-            idx : 2,
-            todo : "todo app 제작 테스트 진행",
-            isComplete : true
-        }
-    ])
+export default function TodoList(username:string, listTodo:TodoObject[], setListTodo:React.Dispatch<React.SetStateAction<TodoObject[]>>):JSX.Element {
+    
     
     return (
         <div className="todo-list">
@@ -28,7 +15,7 @@ export default function TodoList(username:string):JSX.Element {
                         <input type="checkbox" onClick={() => {
                             let newTodoArr = [...listTodo]
                             newTodoArr[index].isComplete = !newTodoArr[index].isComplete;
-                            SetListTodo(newTodoArr)
+                            setListTodo(newTodoArr)
                         }}/>
                     </li>
                 ))}

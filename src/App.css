@@ -49,3 +49,10 @@
   text-decoration-line: line-through;
   color: aquamarine;
 }
+
+.highlight {
+  background-color: #61dafb;
+  border-color: gold;
+  border-style: solid;
+  border: 5px;
+}

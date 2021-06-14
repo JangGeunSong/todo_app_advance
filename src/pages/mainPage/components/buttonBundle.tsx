@@ -1,4 +1,4 @@
-export default function ButtonBundle(inputOpenStatus:boolean, changeInputStatus:React.Dispatch<React.SetStateAction<boolean>>):JSX.Element {
+export default function ButtonBundle(inputOpenStatus:boolean, changeInputStatus:React.Dispatch<React.SetStateAction<boolean>>, addTodoCmd:() => void):JSX.Element {
 
     const openTodoInput = () => {
         changeInputStatus(!inputOpenStatus)
@@ -17,11 +17,11 @@ export default function ButtonBundle(inputOpenStatus:boolean, changeInputStatus:
                     (<span>TODO 등록창 열기</span>)
                 }
             </button>
-            <button onClick={descriptionClick}>
+            <button>
                 {inputOpenStatus === true ? 
-                    (<span>input 가이드라인 확인</span>)
+                    (<span onClick={addTodoCmd}>todo 입력</span>)
                     :
-                    (<span>설명보기</span>)
+                    (<span onClick={descriptionClick}>설명보기</span>)
                 }
             </button>
         </div>
