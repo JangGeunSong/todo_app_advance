@@ -37,10 +37,18 @@ function MainPage(greeting:string):JSX.Element {
         addTodo(todoObj);
     }
 
+    const deleteTodoCmd = (idx:number) => {
+        let newTodoArr = [...listTodo]
+        newTodoArr = newTodoArr.filter(el => {
+            return el.idx != idx;
+        })
+        setListTodo(newTodoArr)
+    }
+
     return (
         <div>
             <p>{greeting}</p>
-            {todoList("user1", listTodo, setListTodo)}
+            {todoList("user1", listTodo, setListTodo, deleteTodoCmd)}
             {isTodoInputOpen === true ? (todoInputForm(todo, setTodo)) : null}
             {buttonBundle(isTodoInputOpen, setIsTodoInputOpen, addTodoCmd)}
         </div>

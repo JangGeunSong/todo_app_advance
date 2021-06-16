@@ -1,6 +1,6 @@
 import TodoObject from '../../../Data/todoObject';
 
-export default function TodoList(username:string, listTodo:TodoObject[], setListTodo:React.Dispatch<React.SetStateAction<TodoObject[]>>):JSX.Element {
+export default function TodoList(username:string, listTodo:TodoObject[], setListTodo:React.Dispatch<React.SetStateAction<TodoObject[]>>, deleteTodo:(idx: number) => void):JSX.Element {
     
     
     return (
@@ -17,6 +17,7 @@ export default function TodoList(username:string, listTodo:TodoObject[], setList
                             newTodoArr[index].isComplete = !newTodoArr[index].isComplete;
                             setListTodo(newTodoArr)
                         }}/>
+                        <button onClick={() => deleteTodo(element.idx)}>X</button>
                     </li>
                 ))}
             </ul>
