@@ -4,6 +4,7 @@ import buttonBundle from './components/buttonBundle';
 import todoList from './components/todoList';
 import todoInputForm from './components/todoInputForm';
 import TodoObject from '../../Data/todoObject';
+import fileControl from './components/fileControl';
 
 function MainPage(greeting:string):JSX.Element {
     const [listTodo, setListTodo] = useState<TodoObject[]>([
@@ -40,7 +41,7 @@ function MainPage(greeting:string):JSX.Element {
     const deleteTodoCmd = (idx:number) => {
         let newTodoArr = [...listTodo]
         newTodoArr = newTodoArr.filter(el => {
-            return el.idx != idx;
+            return el.idx !== idx;
         })
         setListTodo(newTodoArr)
     }
@@ -51,6 +52,7 @@ function MainPage(greeting:string):JSX.Element {
             {todoList("user1", listTodo, setListTodo, deleteTodoCmd)}
             {isTodoInputOpen === true ? (todoInputForm(todo, setTodo)) : null}
             {buttonBundle(isTodoInputOpen, setIsTodoInputOpen, addTodoCmd)}
+            {fileControl(listTodo)}
         </div>
     )
 }
