@@ -22,6 +22,7 @@ function MainPage(greeting:string):JSX.Element {
 
     const [isTodoInputOpen, setIsTodoInputOpen] = useState<boolean>(false);
     const [todo, setTodo] = useState<string>("");
+    const [inActive, setInActive] = useState<boolean>(false);
 
     const addTodo = (newTodo:TodoObject) => {
         let newTodoArr = [...listTodo]
@@ -46,12 +47,16 @@ function MainPage(greeting:string):JSX.Element {
         setListTodo(newTodoArr)
     }
 
+    const changeActiveStatus = () => {
+        setInActive(!inActive);
+    }
+
     return (
         <div>
             <p>{greeting}</p>
             {todoList("user1", listTodo, setListTodo, deleteTodoCmd)}
-            {isTodoInputOpen === true ? (todoInputForm(todo, setTodo)) : null}
-            {buttonBundle(isTodoInputOpen, setIsTodoInputOpen, addTodoCmd)}
+            {isTodoInputOpen === true ? (todoInputForm(todo, setTodo, inActive)) : null}
+            {buttonBundle(isTodoInputOpen, setIsTodoInputOpen, addTodoCmd, changeActiveStatus)}
             {fileControl(listTodo)}
         </div>
     )

@@ -7,7 +7,9 @@ export default function fileControl(data:Array<TodoObject>) {
 
     return (
         <div>
-            <a href={url} download="storedTodoList.json">파일로 추출하기</a>            
+            <button>
+                <a href={url} download="storedTodoList.json">파일로 추출하기</a>            
+            </button>
         </div>
     )
 }
