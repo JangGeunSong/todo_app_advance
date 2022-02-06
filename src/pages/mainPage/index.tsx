@@ -4,6 +4,7 @@ import buttonBundle from './components/buttonBundle';
 import todoList from './components/todoList';
 import todoInputForm from './components/todoInputForm';
 import TodoObject from '../../Data/todoObject';
+import fileControl from './components/fileControl';
 
 function MainPage(greeting:string):JSX.Element {
     const [listTodo, setListTodo] = useState<TodoObject[]>([
@@ -21,6 +22,7 @@ function MainPage(greeting:string):JSX.Element {
 
     const [isTodoInputOpen, setIsTodoInputOpen] = useState<boolean>(false);
     const [todo, setTodo] = useState<string>("");
+    const [inActive, setInActive] = useState<boolean>(false);
 
     const addTodo = (newTodo:TodoObject) => {
         let newTodoArr = [...listTodo]
@@ -40,17 +42,22 @@ function MainPage(greeting:string):JSX.Element {
     const deleteTodoCmd = (idx:number) => {
         let newTodoArr = [...listTodo]
         newTodoArr = newTodoArr.filter(el => {
-            return el.idx != idx;
+            return el.idx !== idx;
         })
         setListTodo(newTodoArr)
+    }
+
+    const changeActiveStatus = () => {
+        setInActive(!inActive);
     }
 
     return (
         <div>
             <p>{greeting}</p>
             {todoList("user1", listTodo, setListTodo, deleteTodoCmd)}
-            {isTodoInputOpen === true ? (todoInputForm(todo, setTodo)) : null}
-            {buttonBundle(isTodoInputOpen, setIsTodoInputOpen, addTodoCmd)}
+            {isTodoInputOpen === true ? (todoInputForm(todo, setTodo, inActive)) : null}
+            {buttonBundle(isTodoInputOpen, setIsTodoInputOpen, addTodoCmd, changeActiveStatus)}
+            {fileControl(listTodo)}
         </div>
     )
 }

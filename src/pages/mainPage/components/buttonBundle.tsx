@@ -1,4 +1,4 @@
-export default function ButtonBundle(inputOpenStatus:boolean, changeInputStatus:React.Dispatch<React.SetStateAction<boolean>>, addTodoCmd:() => void):JSX.Element {
+export default function ButtonBundle(inputOpenStatus:boolean, changeInputStatus:React.Dispatch<React.SetStateAction<boolean>>, addTodoCmd:() => void, changeActiveStatus:() => void):JSX.Element {
 
     const openTodoInput = () => {
         changeInputStatus(!inputOpenStatus)
