@@ -16,7 +16,7 @@ export default function TodoList(username:string, listTodo:TodoObject[], setList
                             let newTodoArr = [...listTodo]
                             newTodoArr[index].isComplete = !newTodoArr[index].isComplete;
                             setListTodo(newTodoArr)
-                        }}/>
+                        }} checked={element.isComplete}/>
                         <button onClick={() => deleteTodo(element.idx)}>X</button>
                     </li>
                 ))}

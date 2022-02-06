@@ -42,12 +42,12 @@
 }
 
 .complete {
-  color: crimson;
+  text-decoration-line: line-through;
+  color: aquamarine;
 }
 
 .uncomplete {
-  text-decoration-line: line-through;
-  color: aquamarine;
+  color: crimson;
 }
 
 .highlight {

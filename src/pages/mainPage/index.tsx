@@ -10,7 +10,7 @@ function MainPage(greeting:string):JSX.Element {
         {
             idx : 1,
             todo : "todo app 제작 템플릿 만들어보기",
-            isComplete : true
+            isComplete : false
         },
         {
             idx : 2,
