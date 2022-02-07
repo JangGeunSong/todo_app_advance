@@ -34,7 +34,7 @@ function MainPage(greeting:string):JSX.Element {
         let todoObj:TodoObject = {
             idx : listTodo.length + 1,
             todo: todo,
-            isComplete : true
+            isComplete : false
         }
         addTodo(todoObj);
     }
@@ -55,7 +55,7 @@ function MainPage(greeting:string):JSX.Element {
         <div>
             <p>{greeting}</p>
             {todoList("user1", listTodo, setListTodo, deleteTodoCmd)}
-            {isTodoInputOpen === true ? (todoInputForm(todo, setTodo, inActive)) : null}
+            {isTodoInputOpen === true ? (todoInputForm(todo, setTodo, addTodoCmd, inActive)) : null}
             {buttonBundle(isTodoInputOpen, setIsTodoInputOpen, addTodoCmd, changeActiveStatus)}
             {fileControl(listTodo)}
         </div>
