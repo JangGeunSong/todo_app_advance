@@ -6,7 +6,7 @@ import todoInputForm from './components/todoInputForm';
 import TodoObject from '../../Data/todoObject';
 import fileControl from './components/fileControl';
 
-function MainPage(greeting:string):JSX.Element {
+function MainPage():JSX.Element {
     const [listTodo, setListTodo] = useState<TodoObject[]>([
         {
             idx : 1,
@@ -53,7 +53,6 @@ function MainPage(greeting:string):JSX.Element {
 
     return (
         <div>
-            <p>{greeting}</p>
             {todoList("user1", listTodo, setListTodo, deleteTodoCmd)}
             {isTodoInputOpen === true ? (todoInputForm(todo, setTodo, addTodoCmd, inActive)) : null}
             {buttonBundle(isTodoInputOpen, setIsTodoInputOpen, addTodoCmd, changeActiveStatus)}

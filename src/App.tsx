@@ -1,13 +1,12 @@
-import React from 'react';
 import './App.css';
 
-import mainPage from './pages/mainPage';
+import router from './pages/common/Router';
 
 function App() {
   return (
     <div className="App">
       <div className="greeting content App-header">
-        {mainPage('Hello friend! this is todolist test web page')}
+        {router()}
       </div>
     </div>
   );
