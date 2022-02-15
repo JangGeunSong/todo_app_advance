@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import buttonBundle from './components/buttonBundle';
 import todoList from './components/todoList';
@@ -7,6 +7,8 @@ import TodoObject from '../../Data/todoObject';
 import fileControl from './components/fileControl';
 
 function MainPage():JSX.Element {
+    const url = "todo";
+
     const [listTodo, setListTodo] = useState<TodoObject[]>([
         {
             idx : 1,
@@ -18,11 +20,17 @@ function MainPage():JSX.Element {
             todo : "todo app 제작 테스트 진행",
             isComplete : true
         }
-    ])
+    ]);
 
     const [isTodoInputOpen, setIsTodoInputOpen] = useState<boolean>(false);
     const [todo, setTodo] = useState<string>("");
     const [inActive, setInActive] = useState<boolean>(false);
+
+    useEffect(() => {
+        const result = fetch(url).then(response => response).then(data => {
+            
+        });
+    }, []);
 
     const addTodo = (newTodo:TodoObject) => {
         let newTodoArr = [...listTodo]

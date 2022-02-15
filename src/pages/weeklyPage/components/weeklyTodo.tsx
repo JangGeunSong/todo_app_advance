@@ -2,7 +2,7 @@ import { useState } from 'react'
 import WeeklyObject from '../../../Data/weeklyObject'
 import createModal from './createModal';
 
-export default function weeklyTodo(username:String) {
+export default function WeeklyTodo(username:String) {
 
     const [showWeeklyCreateModal, setShowWeeklyCreateModal] = useState(false);
 
