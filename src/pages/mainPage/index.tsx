@@ -5,32 +5,38 @@ import todoList from './components/todoList';
 import todoInputForm from './components/todoInputForm';
 import TodoObject from '../../Data/todoObject';
 import fileControl from './components/fileControl';
+import { customAxios } from '../../lib/customAxios';
 
 function MainPage():JSX.Element {
     const url = "todo";
 
-    const [listTodo, setListTodo] = useState<TodoObject[]>([
-        {
-            idx : 1,
-            todo : "todo app 제작 템플릿 만들어보기",
-            isComplete : false
-        },
-        {
-            idx : 2,
-            todo : "todo app 제작 테스트 진행",
-            isComplete : true
-        }
-    ]);
+    const [listTodo, setListTodo] = useState<TodoObject[]>([]);
 
     const [isTodoInputOpen, setIsTodoInputOpen] = useState<boolean>(false);
     const [todo, setTodo] = useState<string>("");
     const [inActive, setInActive] = useState<boolean>(false);
 
     useEffect(() => {
-        const result = fetch(url).then(response => response).then(data => {
-            
+        const func = async () => {
+            return await customAxios.get(url);
+        }
+        
+        const res = func();
+        
+        let Arr : TodoObject[] = [];
+
+        res.then((value) => {
+            value.data.forEach((el: any) => {
+                let obj: TodoObject = {
+                    idx: el.id,
+                    todo: el.todo,
+                    isComplete: el.complete
+                }
+                Arr.push(obj);
+            })
+            setListTodo(Arr);
         });
-    }, []);
+    }, [url]);
 
     const addTodo = (newTodo:TodoObject) => {
         let newTodoArr = [...listTodo]

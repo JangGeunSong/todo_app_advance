@@ -9,10 +9,10 @@ export default function TodoList(username:string, listTodo:TodoObject[], setList
             <ul>
                 {listTodo.map((element, index) => (
                     <li 
-                        key={element.idx.toString()}
+                        key={index.toString()}
                         className={element.isComplete === true ? "complete" : "uncomplete"}>
                         <span>{element.todo}</span>
-                        <input type="checkbox" onClick={() => {
+                        <input type="checkbox" onChange={() => {
                             let newTodoArr = [...listTodo]
                             newTodoArr[index].isComplete = !newTodoArr[index].isComplete;
                             setListTodo(newTodoArr)
