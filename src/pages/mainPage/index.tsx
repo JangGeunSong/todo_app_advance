@@ -16,11 +16,11 @@ function MainPage():JSX.Element {
     const [todo, setTodo] = useState<string>("");
     const [inActive, setInActive] = useState<boolean>(false);
 
-    useEffect(() => {
-        const func = async () => {
-            return await customAxios.get(url);
-        }
-        
+    const func = async () => {
+        return await customAxios.get(url);
+    }
+
+    const updateListData = () => {
         const res = func();
         
         let Arr : TodoObject[] = [];
@@ -36,29 +36,34 @@ function MainPage():JSX.Element {
             })
             setListTodo(Arr);
         });
-    }, [url]);
-
-    const addTodo = (newTodo:TodoObject) => {
-        let newTodoArr = [...listTodo]
-        newTodoArr.push(newTodo)
-        setListTodo(newTodoArr)
     }
 
+    useEffect(() => {
+        updateListData();
+    }, [url]);
+
     const addTodoCmd = () => {
-        let todoObj:TodoObject = {
-            idx : listTodo.length + 1,
-            todo: todo,
-            isComplete : false
-        }
-        addTodo(todoObj);
+        const addObj = {
+            id : listTodo.length + 1, 
+            todo : todo, 
+            complete : false
+        };
+        customAxios.post(url, addObj)
+        .then(() => {
+            updateListData();
+        });
     }
 
     const deleteTodoCmd = (idx:number) => {
-        let newTodoArr = [...listTodo]
-        newTodoArr = newTodoArr.filter(el => {
-            return el.idx !== idx;
-        })
-        setListTodo(newTodoArr)
+        const deleteObj = {
+            id : idx,
+            todo : todo, 
+            complete : false
+        }
+        customAxios.delete(url, {data : deleteObj})
+        .then(() => {
+            updateListData();
+        });
     }
 
     const changeActiveStatus = () => {
